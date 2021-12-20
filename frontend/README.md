@@ -36,6 +36,7 @@ At the root of your project create an .env file with the following contents:
 # BE stands for Backend Endpoint
 REACT_APP_BE=<YOUR_BACKEND_ENDPOINT> # eg: http://localhost:5000/api/v1
 REACT_APP_CLOUDINARY_ENDPOINT=https://api.cloudinary.com/v1_1/<YOUR_CLOUD_NAME>
+REACT_APP_CLOUDINARY_UPLOAD_PRESET=<CLOUDINARY_UPLOAD_PRESET>
 ```
 
 Then run <code>yarn install</code> and <code>yarn start</code> to start the development server.
