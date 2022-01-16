@@ -3,9 +3,9 @@ const router = express.Router();
 const { recommendedCourses } = require("../controllers/user");
 
 const {
-  getVideo,
+  getCourse,
 } = require("../controllers/course");
 
 router.route("/").get(recommendedCourses);
-router.route("/course/:id").get(getVideo);
+router.route("/:id").get(getCourse);
 module.exports = router;

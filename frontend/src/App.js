@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import { ToastContainer } from "react-toastify";
@@ -10,7 +10,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const { token } = useSelector((state) => state.user.data);
-
   return (
     <ThemeProvider theme={darkTheme}>
       <GlobalStyle />

@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled, { css } from "styled-components";
 import { NavLink } from "react-router-dom";
-import Subscriptions from "./Subscriptions";
 import {
   HomeIcon,
   TrendingIcon,
@@ -92,28 +91,6 @@ const Sidebar = () => {
         </div>
       </NavLink>
 
-      <NavLink
-        onClick={handleCloseSidebar}
-        to="/feed/trending"
-        activeClassName="active"
-      >
-        <div className="icon">
-          <TrendingIcon />
-          <span>Trending</span>
-        </div>
-      </NavLink>
-
-      <NavLink
-        onClick={handleCloseSidebar}
-        to="/feed/subscriptions"
-        activeClassName="active"
-      >
-        <div className="icon">
-          <SubIcon />
-          <span>Subscriptions</span>
-        </div>
-      </NavLink>
-
       <div className="ruler"></div>
 
       <NavLink
@@ -161,8 +138,6 @@ const Sidebar = () => {
       </NavLink>
 
       <div className="ruler"></div>
-
-      <Subscriptions />
     </SidebarWrapper>
   );
 };

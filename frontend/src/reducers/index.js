@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 
 // reducers
 import user from "./user";
+import course from './course';
 import feed from "./feed";
 import video from "./video";
 import profile from "./profile";
@@ -15,6 +16,7 @@ import history from "./history";
 
 export default combineReducers({
   user,
+  course,
   feed,
   video,
   profile,

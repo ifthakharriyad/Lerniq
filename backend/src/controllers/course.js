@@ -4,7 +4,6 @@ const {
   Course,
 } = require("../sequelize");
 const asyncHandler = require("../middlewares/asyncHandler");
-// const Course = require("../models/Course");
 
 exports.getCourse = asyncHandler(async (req, res, next) => {
   const course = await Course.findByPk(req.params.id, {
@@ -22,7 +21,7 @@ exports.getCourse = asyncHandler(async (req, res, next) => {
       statusCode: 404,
     });
   }
-
+  console.log("lllllll")
   res.status(200).json({ success: true, data: course });
 });
 

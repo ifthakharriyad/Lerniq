@@ -17,8 +17,6 @@ import { addChannel, removeChannel } from "../reducers/user";
 import {
   getProfile,
   clearProfile,
-  subscribeFromProfile,
-  unsubscribeFromProfile,
 } from "../reducers/profile";
 import { client, addChannelLocalSt, removeChannelLocalSt } from "../utils";
 
@@ -112,24 +110,10 @@ const Channel = () => {
   const dispatch = useDispatch();
   const { id: loggedInUserId } = useSelector((state) => state.user.data);
   const { isFetching, data: profile } = useSelector((state) => state.profile);
-
+  console.log(profile)
   const [tab, setTab] = useState("VIDEOS");
 
   const profileId = userId || loggedInUserId;
-
-  const handleSubscribe = (channel) => {
-    dispatch(subscribeFromProfile());
-    dispatch(addChannel(channel));
-    addChannelLocalSt(channel);
-    client(`${process.env.REACT_APP_BE}/users/${channel.id}/togglesubscribe`);
-  };
-
-  const handleUnsubscribe = (channelId) => {
-    dispatch(unsubscribeFromProfile());
-    dispatch(removeChannel(channelId));
-    removeChannelLocalSt(channelId);
-    client(`${process.env.REACT_APP_BE}/users/${channelId}/togglesubscribe`);
-  };
 
   useEffect(() => {
     dispatch(getProfile(profileId));
@@ -167,34 +151,12 @@ const Channel = () => {
               alt="channel avatar"
             />
             <div>
-              <h3>{profile.username}</h3>
-              <span className="secondary">
-                {profile.subscribersCount} subscribers
-              </span>
+              <h3>{profile.firstname} {profile.lastname}</h3>
             </div>
           </div>
 
           {profile.isMe && <EditProfile />}
 
-          {!profile.isMe && profile.isSubscribed && (
-            <Button grey onClick={() => handleUnsubscribe(profile.id)}>
-              Subscribed
-            </Button>
-          )}
-
-          {!profile.isMe && !profile.isSubscribed && (
-            <Button
-              onClick={() =>
-                handleSubscribe({
-                  id: profile.id,
-                  avatar: profile.avatar,
-                  username: profile.username,
-                })
-              }
-            >
-              Subscribe
-            </Button>
-          )}
         </div>
 
         <div className="tabs">
@@ -204,12 +166,6 @@ const Channel = () => {
               onClick={() => setTab("VIDEOS")}
             >
               Videos
-            </li>
-            <li
-              style={tab === "CHANNELS" ? activeTabStyle : {}}
-              onClick={() => setTab("CHANNELS")}
-            >
-              Channels
             </li>
             <li
               style={tab === "ABOUT" ? activeTabStyle : {}}
@@ -224,7 +180,6 @@ const Channel = () => {
       <div className="tab">
         {tab === "VIDEOS" && <ChannelTabVideo />}
         {tab === "ABOUT" && <ChannelTabAbout />}
-        {tab === "CHANNELS" && <ChannelTabChannels />}
       </div>
     </Wrapper>
   );
