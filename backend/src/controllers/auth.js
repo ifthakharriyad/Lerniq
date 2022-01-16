@@ -1,5 +1,4 @@
-const { Op } = require("sequelize");
-const { User, Subscription, Video } = require("../sequelize");
+const { User } = require("../sequelize");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const asyncHandler = require("../middlewares/asyncHandler");
@@ -58,23 +57,5 @@ exports.me = async (req, res) => {
       "channelDescription",
     ],
   });
-
-  const subscriptions = await Subscription.findAll({
-    where: { subscriber: req.user.id },
-  });
-
-  const userIds = subscriptions.map((sub) => sub.subscribeTo);
-
-  const channels = await User.findAll({
-    attributes: ["id", "avatar", "username"],
-    where: {
-      id: {
-        [Op.in]: userIds,
-      },
-    },
-  });
-
-  user.setDataValue("channels", channels);
-
   res.status(200).json({ success: true, data: user });
 };
