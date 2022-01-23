@@ -14,21 +14,11 @@ import Button from "../styles/Button";
 
 // reducers and others
 import {
-  subscribeFromVideo,
-  unsubscribeFromVideo,
   clearVideo,
   getVideo,
-  like,
-  dislike,
-  cancelLike,
-  cancelDislike,
 } from "../reducers/video";
-import { addChannel, removeChannel } from "../reducers/user";
 import { getRecommendation } from "../reducers/recommendation";
 import {
-  addChannelLocalSt,
-  removeChannelLocalSt,
-  client,
   timeSince,
 } from "../utils";
 
@@ -138,48 +128,6 @@ const WatchVideo = () => {
     (state) => state.recommendation
   );
 
-  const handleLike = () => {
-    if (video.isLiked) {
-      dispatch(cancelLike());
-    } else {
-      dispatch(like());
-    }
-
-    if (video.isDisliked) {
-      dispatch(cancelDislike());
-    }
-
-    client(`${process.env.REACT_APP_BE}/videos/${videoId}/like`);
-  };
-
-  const handleDislike = () => {
-    if (video.isDisliked) {
-      dispatch(cancelDislike());
-    } else {
-      dispatch(dislike());
-    }
-
-    if (video.isLiked) {
-      dispatch(cancelLike());
-    }
-
-    client(`${process.env.REACT_APP_BE}/videos/${videoId}/dislike`);
-  };
-
-  const handleSubscribe = (channel) => {
-    dispatch(subscribeFromVideo());
-    dispatch(addChannel(channel));
-    addChannelLocalSt(channel);
-    client(`${process.env.REACT_APP_BE}/users/${channel.id}/togglesubscribe`);
-  };
-
-  const handleUnsubscribe = (channelId) => {
-    dispatch(unsubscribeFromVideo());
-    dispatch(removeChannel(channelId));
-    removeChannelLocalSt(channelId);
-    client(`${process.env.REACT_APP_BE}/users/${channelId}/togglesubscribe`);
-  };
-
   useEffect(() => {
     dispatch(getVideo(videoId));
     dispatch(getRecommendation());
@@ -204,8 +152,6 @@ const WatchVideo = () => {
 
   return (
     <Wrapper
-      filledLike={video && video.isLiked}
-      filledDislike={video && video.isDisliked}
     >
       <div className="video-container">
         <div className="video">{!videoFetching && <Player />}</div>
@@ -213,27 +159,10 @@ const WatchVideo = () => {
         <div className="video-info">
           <h3>{video.title}</h3>
 
-          <div className="video-info-stats">
-            <p>
-              <span>{video.views} views</span> <span>•</span>{" "}
-              <span>{timeSince(video.createdAt)} ago</span>
-            </p>
-
-            <div className="likes-dislikes flex-row">
-              <p className="flex-row like">
-                <LikeIcon onClick={handleLike} />{" "}
-                <span>{video.likesCount}</span>
-              </p>
-              <p className="flex-row dislike" style={{ marginLeft: "1rem" }}>
-                <DislikeIcon onClick={handleDislike} />{" "}
-                <span>{video.dislikesCount}</span>
-              </p>
-            </div>
-          </div>
         </div>
 
         <div className="channel-info-description">
-          <div className="channel-info-flex">
+          {/* <div className="channel-info-flex">
             <div className="channel-info flex-row">
               <img
                 className="avatar md"
@@ -261,24 +190,24 @@ const WatchVideo = () => {
                 Subscribed
               </Button>
             )}
-          </div>
+          </div> */}
 
           <p>{video.description}</p>
         </div>
-        <Comments />
+        {/* <Comments /> */}
       </div>
 
-      <div className="related-videos">
+      {/* <div className="related-videos">
         <h3 style={{ marginBottom: "1rem" }}>Up Next</h3>
         {next
           .filter((vid) => vid.id !== video.id)
           .slice(0, 3)
           .map((video) => (
-            <Link key={video.id} to={`/watch/${video.id}`}>
+            <Link key={video.id} to={`/video/${video.id}`}>
               <VideoCard key={video.id} hideavatar={true} video={video} />
             </Link>
           ))}
-      </div>
+      </div> */}
     </Wrapper>
   );
 };

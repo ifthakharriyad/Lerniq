@@ -93,7 +93,6 @@ const Navbar = () => {
   const handleToggleSidebar = () => {
     open ? dispatch(closeSidebar()) : dispatch(openSidebar());
   };
-
   return (
     <Wrapper>
       <div className="logo flex-row">
@@ -116,7 +115,7 @@ const Navbar = () => {
           <NotificationIcon />
         </li>
         <li>
-          <Link to="/feed/my_videos">
+          <Link to={`/user/${user.id}`}>
             <Avatar className="pointer" src={user.avatar} alt="user-avatar" />
           </Link>
         </li>

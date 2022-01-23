@@ -7,18 +7,13 @@ import { useParams } from "react-router-dom";
 import EditProfile from "../components/EditProfile";
 import ChannelTabVideo from "../components/ChannelTabVideo";
 import ChannelTabAbout from "../components/ChannelTabAbout";
-import ChannelTabChannels from "../components/ChannelTabChannels";
 import NoResults from "../components/NoResults";
-import Button from "../styles/Button";
 import Skeleton from "../skeletons/ChannelSkeleton";
 
-// reducers and utils
-import { addChannel, removeChannel } from "../reducers/user";
 import {
   getProfile,
   clearProfile,
 } from "../reducers/profile";
-import { client, addChannelLocalSt, removeChannelLocalSt } from "../utils";
 
 const activeTabStyle = {
   borderBottom: "2px solid white",
@@ -110,7 +105,6 @@ const Channel = () => {
   const dispatch = useDispatch();
   const { id: loggedInUserId } = useSelector((state) => state.user.data);
   const { isFetching, data: profile } = useSelector((state) => state.profile);
-  console.log(profile)
   const [tab, setTab] = useState("VIDEOS");
 
   const profileId = userId || loggedInUserId;
@@ -178,8 +172,8 @@ const Channel = () => {
       </div>
 
       <div className="tab">
-        {tab === "VIDEOS" && <ChannelTabVideo />}
-        {tab === "ABOUT" && <ChannelTabAbout />}
+        {tab === "VIDEOS" && <ChannelTabVideo videos={profile.videos}/>}
+        {tab === "ABOUT" && <ChannelTabAbout description={profile.channelDescription}/>}
       </div>
     </Wrapper>
   );
