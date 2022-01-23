@@ -110,7 +110,6 @@ const Channel = () => {
   const dispatch = useDispatch();
   const { id: loggedInUserId } = useSelector((state) => state.user.data);
   const { isFetching, data: profile } = useSelector((state) => state.profile);
-  console.log(profile)
   const [tab, setTab] = useState("VIDEOS");
 
   const profileId = userId || loggedInUserId;
@@ -178,8 +177,8 @@ const Channel = () => {
       </div>
 
       <div className="tab">
-        {tab === "VIDEOS" && <ChannelTabVideo />}
-        {tab === "ABOUT" && <ChannelTabAbout />}
+        {tab === "VIDEOS" && <ChannelTabVideo videos={profile.videos}/>}
+        {tab === "ABOUT" && <ChannelTabAbout description={profile.channelDescription}/>}
       </div>
     </Wrapper>
   );

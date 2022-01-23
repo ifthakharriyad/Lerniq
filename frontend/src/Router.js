@@ -19,8 +19,8 @@ import Container from "./styles/Container";
 import Home from "./pages/Home";
 import WatchVideo from "./pages/WatchVideo";
 import SearchResults from "./pages/SearchResults";
-import Channel from "./pages/Channel";
-import CoursePage from './pages/CoursePage'
+import Profile from "./pages/Profile";
+import Course from './pages/Course'
 
 const AppRouter = () => (
   <Router>
@@ -31,8 +31,8 @@ const AppRouter = () => (
     <Container>
       <Switch>
         <Route path="/watch/:videoId" component={WatchVideo} />
-        <Route path="/course/:courseId" component={CoursePage} />
-        <Route path="/user/:userId" component={Channel} />
+        <Route path="/course/:courseId" component={Course} />
+        <Route path="/user/:userId" component={Profile} />
         <Route path="/results/:searchterm" component={SearchResults} />
         <Route path="/" component={Home} />
         <Redirect to="/" />
