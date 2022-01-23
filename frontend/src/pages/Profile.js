@@ -7,18 +7,13 @@ import { useParams } from "react-router-dom";
 import EditProfile from "../components/EditProfile";
 import ChannelTabVideo from "../components/ChannelTabVideo";
 import ChannelTabAbout from "../components/ChannelTabAbout";
-import ChannelTabChannels from "../components/ChannelTabChannels";
 import NoResults from "../components/NoResults";
-import Button from "../styles/Button";
 import Skeleton from "../skeletons/ChannelSkeleton";
 
-// reducers and utils
-import { addChannel, removeChannel } from "../reducers/user";
 import {
   getProfile,
   clearProfile,
 } from "../reducers/profile";
-import { client, addChannelLocalSt, removeChannelLocalSt } from "../utils";
 
 const activeTabStyle = {
   borderBottom: "2px solid white",
