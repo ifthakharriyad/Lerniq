@@ -24,11 +24,15 @@ import {
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 70% 1fr;
+  grid-template-columns: 1fr;
   grid-gap: 2rem;
   padding: 1.3rem;
   padding-bottom: 7rem;
 
+  .video-container{
+    width:80%;
+    margin: 0 auto;
+  }
   .video-container .video-info {
     margin-top: 1rem;
     margin-bottom: 1rem;
