@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { useParams } from "react-router-dom";
 
 // components
@@ -94,9 +94,7 @@ const Channel = () => {
   const dispatch = useDispatch();
   const { id: courseIdFromState } = useSelector((state) => state.course.data);
   const { isFetching, data: course } = useSelector((state) =>  state.course);
-    console.log(isFetching, course)
   const [tab, setTab] = useState("Modules");
-
   courseId = courseId || courseIdFromState;
 
   useEffect(() => {
@@ -118,10 +116,12 @@ const Channel = () => {
   if (isFetching) {
     return <Skeleton />;
   }
+  const {info} = course;
+  const {videos} = course
   return (
     <Wrapper >
       <div className="cover">
-        <img src={course.cover} alt="channel-cover" />
+        <img src={info.cover} alt="channel-cover" />
       </div>
 
       <div className="header-tabs">
@@ -129,15 +129,13 @@ const Channel = () => {
           <div className="flex-row">
             <img
               className="avatar lg"
-              src={course.avatar}
+              src={info.avatar}
               alt="channel avatar"
             />
             <div>
-              {/* <h3>{course.firstname} {course.lastname}</h3> */}
+              <h3>{info.title}</h3> 
             </div>
           </div>
-
-          {/* {course.isMe && <Editcourse />} */}
         </div>
 
         <div className="tabs">
@@ -146,21 +144,21 @@ const Channel = () => {
               style={tab === "Modules" ? activeTabStyle : {}}
               onClick={() => setTab("Modules")}
             >
-              Videos
+              Modules
             </li>
             <li
               style={tab === "Course Details" ? activeTabStyle : {}}
               onClick={() => setTab("Course Details")}
             >
-              About
+              Details
             </li>
           </ul>
         </div>
       </div>
 
       <div className="tab">
-        {tab === "Modules" && <ChannelTabVideo />}
-        {tab === "Course Details" && <ChannelTabAbout />}
+        {tab === "Modules" && <ChannelTabVideo videos={videos} />}
+        {tab === "Course Details" && <ChannelTabAbout description={info.description} />}
       </div>
     </Wrapper>
   );
