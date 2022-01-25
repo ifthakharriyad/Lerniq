@@ -10,6 +10,9 @@ exports.recommendedCourses = asyncHandler(async (req, res, next) => {
       "description",
 	"price",
       "createdAt",
+      "thumbnail",
+      "cover",
+      "avatar"
     ],
     include: [{ model: User, attributes: ["id", "avatar", "username"] }],
     order: [["createdAt", "DESC"]],
