@@ -40,6 +40,7 @@ const Wrapper = styled.div`
 `;
 
 const VideoCard = ({ nousername = "", hideavatar = "", video }) => {
+	console.log(video)
 	return (
 		<Wrapper>
 			<img
@@ -50,12 +51,7 @@ const VideoCard = ({ nousername = "", hideavatar = "", video }) => {
 			<div className="video-info-container">
 				<div className="video-info">
 					<h4>
-						{video.title.length > 40
-							? video.title.substring(
-									0,
-									40
-							  ) + "..."
-							: video.title}
+						{video.title}
 					</h4>
 						<span className="secondary">
 							Michael B. Timmons

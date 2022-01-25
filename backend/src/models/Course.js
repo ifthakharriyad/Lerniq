@@ -19,5 +19,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    thumbnail:{
+      type: DataTypes.STRING,
+    },
+    cover:{
+      type: DataTypes.STRING
+    },
+    avatar:{
+      type: DataTypes.STRING
+    }
   });
 };
