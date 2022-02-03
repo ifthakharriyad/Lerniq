@@ -16,12 +16,12 @@ import {
 } from "../reducers/profile";
 
 const activeTabStyle = {
-  borderBottom: "2px solid white",
-  color: "white",
+  borderBottom: "2px solid black",
+  color: "black",
 };
 
 const Wrapper = styled.div`
-  background: ${(props) => props.theme.black};
+  background: ${(props) => props.theme.bg};
   min-height: 100vh;
   padding-bottom: 7rem;
 

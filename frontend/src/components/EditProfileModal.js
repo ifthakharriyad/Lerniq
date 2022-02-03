@@ -31,7 +31,7 @@ const Wrapper = styled.div`
   .edit-profile {
     width: 580px;
     border-radius: 4px;
-    background: ${(props) => props.theme.grey};
+    background: ${(props) => props.theme.bg};
     margin: 36px auto;
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.4), 0px 0px 4px rgba(0, 0, 0, 0.25);
   }
@@ -65,7 +65,7 @@ const Wrapper = styled.div`
   input,
   textarea {
     width: 100%;
-    background: ${(props) => props.theme.black};
+    background: lightgrey;
     border: 1px solid ${(props) => props.theme.black};
     margin-bottom: 1rem;
     padding: 0.6rem 1rem;

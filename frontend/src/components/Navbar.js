@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  background: ${(props) => props.theme.grey};
+  background: ${(props) => props.theme.bg};
   z-index: 99;
   padding: 0.7rem 1.5rem;
 
@@ -105,7 +105,7 @@ const Navbar = () => {
         </span>
       </div>
 
-      <Search />
+      {/* <Search /> */}
 
       <ul>
         <li>

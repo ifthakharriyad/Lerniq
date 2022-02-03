@@ -40,7 +40,6 @@ const Wrapper = styled.div`
 `;
 
 const VideoCard = ({ nousername = "", hideavatar = "", video }) => {
-	console.log(video)
 	return (
 		<Wrapper>
 			<img
