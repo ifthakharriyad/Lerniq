@@ -11,7 +11,7 @@ const Wrapper = styled.div`
     width: 30px;
     height: 30px;
     margin-left: 1rem;
-    fill: ${(props) => props.theme.darkGrey};
+    fill: black;
   }
 
   div {
@@ -23,7 +23,11 @@ const Wrapper = styled.div`
     margin-top: 1rem;
   }
 `;
-
+const EditProfileButton = styled(Button)`
+  color:${(props)=>props.theme.primaryColor};
+  border-color:${(props)=>props.theme.primaryColor};
+  background-color:${(props)=>props.theme.bg};
+`
 const EditProfile = () => {
   const dispatch = useDispatch();
 
@@ -40,9 +44,9 @@ const EditProfile = () => {
     <>
       <Wrapper>
         <div>
-          <Button grey onClick={() => setShowModal(true)}>
+          <EditProfileButton grey onClick={() => setShowModal(true)}>
             Edit Profile
-          </Button>
+          </EditProfileButton>
           <SignoutIcon onClick={handleLogout} />
         </div>
       </Wrapper>

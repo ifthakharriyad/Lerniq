@@ -8,10 +8,10 @@ import { signup } from "../reducers/user";
 export const StyledAuth = styled.div`
   width: 385px;
   padding: 3rem 1.5rem;
-  background: ${(props) => props.theme.grey};
+  background: #d3d3d314;
   border-radius: 4px;
   margin: 8% auto;
-
+  border:1px solid black;
   h2 {
     margin-bottom: 1.3rem;
   }
@@ -31,8 +31,8 @@ export const StyledAuth = styled.div`
     border-radius: 3px;
     width: 100%;
     padding: 0.6rem 1.2rem;
-    background: ${(props) => props.theme.black};
-    border: 1px solid ${(props) => props.theme.black};
+    background: lightgrey;
+    border: 1px solid grey;
     margin-bottom: 1.5rem;
     color: ${(props) => props.theme.primaryColor};
   }
@@ -43,9 +43,9 @@ export const StyledAuth = styled.div`
 
   button {
     padding: 0.4rem 1rem;
-    background: ${(props) => props.theme.red};
+    background: green;
     color: ${(props) => props.theme.white};
-    border: 1px solid ${(props) => props.theme.red};
+    border: 1px solid green;
     border-radius: 3px;
     text-transform: uppercase;
     letter-spacing: 1.1px;

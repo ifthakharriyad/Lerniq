@@ -19,7 +19,7 @@ const SidebarWrapper = styled.div`
   left: 0;
   height: 100vh;
   width: 240px;
-  background: ${(props) => props.theme.grey};
+  background: ${(props) => props.theme.bg};
   padding-top: 1rem;
   overflow: auto;
   padding-bottom: 1.5rem;
@@ -39,18 +39,18 @@ const SidebarWrapper = styled.div`
   }
 
   .icon:not(.hover-disable):hover {
-    background: ${(props) => props.theme.darkGrey};
+    background: lightgrey;
     cursor: pointer;
   }
 
   .active div {
-    background: ${(props) => props.theme.darkGrey};
+    background: lightgrey;
     cursor: pointer;
   }
 
-  .active svg {
-    fill: #fff;
-  }
+  // .active svg {
+  //   fill: #fff;
+  // }
 
   .icon span {
     padding-left: 1rem;

@@ -12,3 +12,17 @@ export const darkTheme = {
   purple: "#282A36",
   font: "Fira Sans",
 };
+export const lightTheme = {
+  bg: "white",
+  primaryColor: "black",
+  secondaryColor: "#606060",
+  grey: "#606060",
+  darkGrey: "#383838",
+  black: "#121212",
+  red: "#CC0000",
+  blue: "#3EA6FF",
+  white: "#FFF",
+  pink: "#F86782",
+  purple: "#282A36",
+  font: "Fira Sans",
+};
