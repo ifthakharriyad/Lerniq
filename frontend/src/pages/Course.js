@@ -96,7 +96,6 @@ const Channel = () => {
   const { isFetching, data: course } = useSelector((state) =>  state.course);
   const [tab, setTab] = useState("Modules");
   courseId = courseId || courseIdFromState;
-
   useEffect(() => {
     dispatch(getCourse(courseId))
     return () => {
@@ -120,7 +119,7 @@ const Channel = () => {
   const {videos} = course
   return (
     <Wrapper >
-      <div className="cover">
+     <div className="cover">
         <img src={info.cover} alt="channel-cover" />
       </div>
 
@@ -159,7 +158,7 @@ const Channel = () => {
       <div className="tab">
         {tab === "Modules" && <ChannelTabVideo videos={videos} />}
         {tab === "Course Details" && <ChannelTabAbout description={info.description} />}
-      </div>
+      </div> 
     </Wrapper>
   );
 };

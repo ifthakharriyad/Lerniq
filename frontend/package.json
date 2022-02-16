@@ -9,7 +9,9 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
+    "prop-types": "^15.8.1",
     "react": "^16.13.1",
+    "react-azure-mp": "1.0.2",
     "react-dom": "^16.13.1",
     "react-is": ">= 16.8.0",
     "react-redux": "^7.2.0",
@@ -17,8 +19,7 @@
     "react-scripts": "3.4.1",
     "react-toastify": "^6.0.8",
     "styled-components": "^5.1.1",
-    "typescript": ">=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta",
-    "video.js": "^7.8.3"
+    "typescript": ">=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta"
   },
   "scripts": {
     "start": "react-scripts start",

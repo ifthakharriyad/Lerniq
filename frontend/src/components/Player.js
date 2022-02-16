@@ -1,48 +1,16 @@
-import React, { useRef, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import videojs from "video.js";
-import { client } from "../utils";
-import "video.js/dist/video-js.css";
+import React from "react";
+import { useSelector } from "react-redux";
+import { AzureMP } from 'react-azure-mp'
 
-const Player = ({ previewUrl }) => {
-  const videoRef = useRef(null);
-
-  const dispatch = useDispatch();
-  const { id: videoId, url: src, thumb: poster } = useSelector(
+const Player = () => {
+  const data = useSelector(
     (state) => state.video.data
   );
-
-  useEffect(() => {
-    const vjsPlayer = videojs(videoRef.current);
-
-    if (!previewUrl) {
-      vjsPlayer.poster(poster);
-      vjsPlayer.src(src);
-    }
-
-    if (previewUrl) {
-      vjsPlayer.src({ type: "video/mp4", src: previewUrl });
-    }
-
-    vjsPlayer.on("ended", () => {
-      client(`${process.env.REACT_APP_BE}/videos/${videoId}/view`);
-    });
-
-    return () => {
-      if (vjsPlayer) {
-        vjsPlayer.dispose();
-      }
-    };
-  }, [videoId, dispatch, src, previewUrl, poster]);
-
   return (
-    <div data-vjs-player>
-      <video
-        controls
-        ref={videoRef}
-        className="video-js vjs-fluid vjs-big-play-centered"
-      ></video>
-    </div>
+    <AzureMP
+    options={{ controls: true, autoplay: true }}
+    src={[{src: data.url[0], type: "application/vnd.ms-sstr+xml" }]}
+   />
   );
 };
 
