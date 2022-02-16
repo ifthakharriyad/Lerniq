@@ -153,7 +153,7 @@ const WatchVideo = () => {
       />
     );
   }
-
+  console.log(video)
   return (
     <Wrapper
     >
@@ -161,7 +161,7 @@ const WatchVideo = () => {
         <div className="video">{!videoFetching && <Player />}</div>
 
         <div className="video-info">
-          <h3>{video.title}</h3>
+          <h3>{video.info.title}</h3>
 
         </div>
 
@@ -196,22 +196,9 @@ const WatchVideo = () => {
             )}
           </div> */}
 
-          <p>{video.description}</p>
+          <p>{video.info.description}</p>
         </div>
-        {/* <Comments /> */}
       </div>
-
-      {/* <div className="related-videos">
-        <h3 style={{ marginBottom: "1rem" }}>Up Next</h3>
-        {next
-          .filter((vid) => vid.id !== video.id)
-          .slice(0, 3)
-          .map((video) => (
-            <Link key={video.id} to={`/video/${video.id}`}>
-              <VideoCard key={video.id} hideavatar={true} video={video} />
-            </Link>
-          ))}
-      </div> */}
     </Wrapper>
   );
 };

@@ -4,6 +4,7 @@ const {
   Video,
 } = require("../sequelize");
 const asyncHandler = require("../middlewares/asyncHandler");
+const axios = require('axios');
 
 exports.getVideo = asyncHandler(async (req, res, next) => {
   const video = await Video.findByPk(req.params.id, {
@@ -21,8 +22,12 @@ exports.getVideo = asyncHandler(async (req, res, next) => {
       statusCode: 404,
     });
   }
-
-  res.status(200).json({ success: true, data: video });
+ const url = await axios.get(`${process.env.AMPFETCHENDPOINT}?video=${video.id}&token=39B31488-C153-49AB-A1AA-9869535FD2AF`).then((res)=>res.data)
+  const a={
+    info:video,
+    url:url
+  }
+  res.status(200).json({ success: true, data: a });
 });
 
 

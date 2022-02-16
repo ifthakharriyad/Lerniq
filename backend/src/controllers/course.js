@@ -27,7 +27,7 @@ try{
 
     const promiseArray = courseVideoIds.map(i => {
       return Video.findByPk(i.videoId,{
-        attributes:['id', 'title', 'description', 'url', 'thumbnail'],
+        attributes:['id', 'title', 'description', 'thumbnail'],
         include:{
           model:User
         }
@@ -50,18 +50,3 @@ try{
 }catch(err){
   console.error(err)
 }
-
-// function createVideoPackage(videos){
-//   const videoPackage=[];
-//   for (var i=0; i<videos.length; i++){
-//     let current= videos[i]
-//     let next;
-//     if(i!=videos.length-1){next = videos[i+1]}
-//     const a = {
-//       current,
-//       next:next
-//     }
-//     videoPackage.push(a)
-//   }
-// return videoPackage
-// }
