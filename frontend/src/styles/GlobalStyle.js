@@ -91,7 +91,7 @@ const GlobalStyle = createGlobalStyle`
 
 	.ruler {
 		height: 1px;
-		background: ${(props) => props.theme.darkGrey};
+		background: grey;
 		margin: 1rem 0;
 	}
 

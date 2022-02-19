@@ -2,11 +2,11 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Search from "./Search";
-import UploadVideo from "./UploadVideo";
 import Avatar from "../styles/Avatar";
-import { HamburgerIcon, NotificationIcon } from "./Icons";
+import { HamburgerIcon } from "./Icons";
 import { openSidebar, closeSidebar } from "../reducers/sidebar";
+
+import logo from '../assets/logo.png'
 
 const Wrapper = styled.div`
   position: fixed;
@@ -18,7 +18,7 @@ const Wrapper = styled.div`
   width: 100%;
   background: ${(props) => props.theme.bg};
   z-index: 99;
-  padding: 0.7rem 1.5rem;
+  padding: 0.1rem 1.5rem;
 
   input {
     width: 500px;
@@ -31,6 +31,10 @@ const Wrapper = styled.div`
   .logo span {
     position: relative;
     top: 1px;
+  }
+
+  .logo span img {
+    max-width:200px;
   }
 
   ul {
@@ -89,7 +93,6 @@ const Navbar = () => {
 
   const { data: user } = useSelector((state) => state.user);
   const { sidebar: open } = useSelector((state) => state.sidebar);
-
   const handleToggleSidebar = () => {
     open ? dispatch(closeSidebar()) : dispatch(openSidebar());
   };
@@ -101,19 +104,13 @@ const Navbar = () => {
           onClick={handleToggleSidebar}
         />
         <span>
-          <Link to="/">Green ED</Link>
+          <Link to="/"><img src={logo} alt="site logo"/></Link>
         </span>
       </div>
 
       {/* <Search /> */}
 
       <ul>
-        <li>
-          <UploadVideo />
-        </li>
-        <li>
-          <NotificationIcon />
-        </li>
         <li>
           <Link to={`/user/${user.id}`}>
             <Avatar className="pointer" src={user.avatar} alt="user-avatar" />

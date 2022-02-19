@@ -47,33 +47,6 @@ const Home = () => {
 	const { isFetching, courses } = useSelector(
 		(state) => state.recommendation
 	);
-	//Sample courses
-	// let staticCourses = [
-	// 	{
-	// 		id: "de64567c-6795-11ec-b1c3-0242ac120002",
-	// 		title: "First course",
-	// 		description: "This is the first course",
-	// 		thumbnail:"https://res.cloudinary.com/dd9ebqpuz/image/upload/v1641574628/adivergather_vqvt06.jpg",
-	// 		price: "1",
-	// 		createdAt: "2021-12-28T00:00:00.000Z",
-	// 	},
-	// 	{
-	// 		id: "de64567c-6795-11ec-b1c3-0242ac120003",
-	// 		title: "Second Course",
-	// 		description: "This is the second course",
-	// 		thumbnail:"https://res.cloudinary.com/dd9ebqpuz/image/upload/v1641574627/aquacultureo_1_wbnkgb.jpg",
-	// 		price: "2",
-	// 		createdAt: "2021-12-29T00:00:00.000Z",
-	// 	},
-	// 	{
-	// 		id: "de64567c-6795-11ec-b1c3-0242ac120003",
-	// 		title: "Third Course",
-	// 		description: "This is the third course",
-	// 		thumbnail:"https://scx2.b-cdn.net/gfx/news/2019/in2017global.jpg",
-	// 		price: "2",
-	// 		createdAt: "2021-12-30T00:00:00.000Z",
-	// 	},
-	// ];
 	useEffect(() => {
 		dispatch(getRecommendation());
 	}, [dispatch]);
@@ -84,7 +57,7 @@ const Home = () => {
 
 	return (
 		<StyledHome>
-			<h2>Recommended Courses</h2>
+			<h2>Enrolled Courses</h2>
 			<VideoGrid>
 				{!isFetching &&
 				courses.map((course) => (

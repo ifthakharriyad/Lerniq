@@ -108,7 +108,7 @@ const EditProfileModal = ({ closeModal }) => {
 
   // uploaded avatar, cover
   const [cover, setCover] = useState("");
-  const [avatar, setAvatar] = useState("");
+  const [avatar] = useState("");
 
   // handlers for image upload
   const handleCoverUpload = async (e) => {
@@ -116,14 +116,6 @@ const EditProfileModal = ({ closeModal }) => {
 
     if (file) {
       setCover(await upload("image", file));
-    }
-  };
-
-  const handleAvatarUpload = async (e) => {
-    const file = e.target.files[0];
-
-    if (file) {
-      setAvatar(await upload("image", file));
     }
   };
 
@@ -191,20 +183,11 @@ const EditProfileModal = ({ closeModal }) => {
         </div>
 
         <div className="avatar-upload-icon">
-          <label htmlFor="avatar-upload">
             <img
               src={avatar ? avatar : profile.avatar}
-              className="pointer avatar lg"
+              className="avatar lg"
               alt="avatar"
             />
-          </label>
-          <input
-            id="avatar-upload"
-            type="file"
-            accept="image/*"
-            onChange={handleAvatarUpload}
-            style={{ display: "none" }}
-          />
         </div>
 
         <form>

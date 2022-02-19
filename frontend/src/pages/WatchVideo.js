@@ -1,16 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled, { css } from "styled-components";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 // UI elements
 import Player from "../components/Player";
-import Comments from "../components/Comments";
-import VideoCard from "../components/VideoCard";
 import NoResults from "../components/NoResults";
-import { LikeIcon, DislikeIcon } from "../components/Icons";
 import Skeleton from "../skeletons/WatchVideoSkeleton";
-import Button from "../styles/Button";
 
 // reducers and others
 import {
@@ -18,9 +14,6 @@ import {
   getVideo,
 } from "../reducers/video";
 import { getRecommendation } from "../reducers/recommendation";
-import {
-  timeSince,
-} from "../utils";
 
 const Wrapper = styled.div`
   display: grid;
@@ -128,7 +121,7 @@ const WatchVideo = () => {
   const { isFetching: videoFetching, data: video } = useSelector(
     (state) => state.video
   );
-  const { isFetching: recommendationFetching, videos: next } = useSelector(
+  const { isFetching: recommendationFetching } = useSelector(
     (state) => state.recommendation
   );
 
@@ -153,7 +146,6 @@ const WatchVideo = () => {
       />
     );
   }
-  console.log(video)
   return (
     <Wrapper
     >
