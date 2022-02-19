@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import { ToastContainer } from "react-toastify";
 import GlobalStyle from "./styles/GlobalStyle";
-import { darkTheme, lightTheme } from "./styles/theme";
+import { lightTheme } from "./styles/theme";
 import Router from "./Router";
 import Auth from "./components/Auth";
 import "react-toastify/dist/ReactToastify.css";

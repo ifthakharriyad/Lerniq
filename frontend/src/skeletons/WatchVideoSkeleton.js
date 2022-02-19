@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { SkeletonLine, VideoCardSkeleton } from "../styles/Skeleton";
+import { SkeletonLine } from "../styles/Skeleton";
 
 const Wrapper = styled.div`
 	display: grid;
-	grid-template-columns: 70% 1fr;
+	grid-template-columns: 1fr;
 	grid-gap: 2rem;
 	padding: 1.3rem;
 
@@ -76,12 +76,12 @@ const ChannelSkeleton = () => {
           </div>
         </div>
       </div>
-      <div className="related-videos">
+      {/* <div className="related-videos">
         <SkeletonLine width="180px" height="20px" mb="20px" />
         <VideoCardSkeleton />
         <VideoCardSkeleton />
         <VideoCardSkeleton />
-      </div>
+      </div> */}
     </Wrapper>
   );
 };

@@ -1,17 +1,14 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled, { css } from "styled-components";
 import { NavLink } from "react-router-dom";
 import {
   HomeIcon,
-  TrendingIcon,
-  SubIcon,
   LibIcon,
-  HistoryIcon,
-  VidIcon,
-  LikeIcon,
 } from "./Icons";
 import { closeSidebar } from "../reducers/sidebar";
+import { getRecommendation } from "../reducers/recommendation";
+
 
 const SidebarWrapper = styled.div`
   position: fixed;
@@ -73,7 +70,15 @@ const Sidebar = () => {
   const dispatch = useDispatch();
 
   const { sidebar: open } = useSelector((state) => state.sidebar);
+	const { courses } = useSelector((state) => state.recommendation);
 
+  const enrolledCourse = courses[0]
+  const id = enrolledCourse?.id
+  const title = enrolledCourse?.title.slice(0,15) +"..."
+  
+  useEffect(() => {
+		dispatch(getRecommendation());
+	}, [dispatch]);
   const handleCloseSidebar = () => {
     dispatch(closeSidebar());
   };
@@ -95,45 +100,12 @@ const Sidebar = () => {
 
       <NavLink
         onClick={handleCloseSidebar}
-        to="/feed/library"
+        to={`/course/${id}`}
         activeClassName="active"
       >
         <div className="icon">
           <LibIcon />
-          <span>Library</span>
-        </div>
-      </NavLink>
-
-      <NavLink
-        onClick={handleCloseSidebar}
-        to="/feed/history"
-        activeClassName="active"
-      >
-        <div className="icon">
-          <HistoryIcon />
-          <span>History</span>
-        </div>
-      </NavLink>
-
-      <NavLink
-        onClick={handleCloseSidebar}
-        to="/feed/my_videos"
-        activeClassName="active"
-      >
-        <div className="icon">
-          <VidIcon />
-          <span>Your videos</span>
-        </div>
-      </NavLink>
-
-      <NavLink
-        onClick={handleCloseSidebar}
-        to="/feed/liked_videos"
-        activeClassName="active"
-      >
-        <div className="icon">
-          <LikeIcon />
-          <span>Liked videos</span>
+          <span>{title}</span>
         </div>
       </NavLink>
 
