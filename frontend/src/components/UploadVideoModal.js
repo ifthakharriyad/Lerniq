@@ -134,6 +134,7 @@ const UploadVideoModal = ({ previewVideo, closeModal, url, thumbnail }) => {
   const [tab, setTab] = useState("PREVIEW");
 
   const handleTab = async () => {
+    const backendUrl = process.env.NODE_ENV == "production" ? '' : process.env.REACT_APP_BE;
     if (tab === "PREVIEW") {
       setTab("FORM");
     } else {
@@ -149,7 +150,7 @@ const UploadVideoModal = ({ previewVideo, closeModal, url, thumbnail }) => {
       };
 
       const { data: video } = await client(
-        `${process.env.REACT_APP_BE}/videos`,
+        `${backendUrl}/videos`,
         { body: newVideo }
       );
 

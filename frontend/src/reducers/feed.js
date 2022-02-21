@@ -2,7 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { client } from "../utils";
 
 export const getFeed = createAsyncThunk("feed/getFeed", async () => {
-  const { data } = await client(`${process.env.REACT_APP_BE}/users/feed`);
+  const backendUrl = process.env.NODE_ENV === "production" ? '' : process.env.REACT_APP_BE;
+  const { data } = await client(`${backendUrl}/users/feed`);
   return data;
 });
 

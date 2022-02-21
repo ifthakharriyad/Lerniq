@@ -1,9 +1,7 @@
-import axios from "axios";
 import { toast } from "react-toastify";
 
 export const client = async (endpoint, { body, ...customConfig } = {}) => {
   const user = JSON.parse(localStorage.getItem("user"));
-
   const config = {
     method: body ? "POST" : "GET",
     ...customConfig,
@@ -67,40 +65,9 @@ export const timeSince = (timestamp) => {
   return Math.floor(seconds) + " seconds";
 };
 
-export const upload = async (resourceType, file) => {
-  const formData = new FormData();
-  formData.append("upload_preset", `${process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET}`);
-  formData.append("file", file);
-
-  let toastId = null;
-  const config = {
-    onUploadProgress: (p) => {
-      const progress = p.loaded / p.total;
-      if (toastId === null) {
-        toastId = toast("Upload in Progress", {
-          progress,
-        });
-      } else {
-        toast.update(toastId, {
-          progress,
-        });
-      }
-    },
-  };
-
-  const { data } = await axios.post(
-    `${process.env.REACT_APP_CLOUDINARY_ENDPOINT}/${resourceType}/upload`,
-    formData,
-    config
-  );
-
-  toast.dismiss(toastId);
-
-  return data.secure_url;
-};
 
 export const authenticate = async (type, data) => {
-  const backendUrl = process.env.REACT_APP_BE;
+  const backendUrl = process.env.NODE_ENV === "production" ? '' : process.env.REACT_APP_BE;
 
   try {
     const { data: token } = await client(`${backendUrl}/auth/${type}`, {

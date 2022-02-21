@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled, { keyframes } from "styled-components";
 import { toast } from "react-toastify";
@@ -7,7 +7,7 @@ import Button from "../styles/Button";
 import useInput from "../hooks/useInput";
 import { updateUser } from "../reducers/user";
 import { updateProfile } from "../reducers/profile";
-import { client, updateUserLocalSt, upload } from "../utils";
+import { client, updateUserLocalSt } from "../utils";
 
 const openModal = keyframes`
 	from {
@@ -106,20 +106,9 @@ const EditProfileModal = ({ closeModal }) => {
   const lastname = useInput(profile.lastname);
   const channelDesc = useInput(profile.channelDescription || "");
 
-  // uploaded avatar, cover
-  const [cover, setCover] = useState("");
-  const [avatar] = useState("");
-
-  // handlers for image upload
-  const handleCoverUpload = async (e) => {
-    const file = e.target.files[0];
-
-    if (file) {
-      setCover(await upload("image", file));
-    }
-  };
-
   const handleEditProfile = () => {
+    const backendUrl = process.env.NODE_ENV === "production" ? '' : process.env.REACT_APP_BE;
+
     if (!firstname.value.trim()) {
       return toast.error("firstname should not be empty");
     }
@@ -133,15 +122,15 @@ const EditProfileModal = ({ closeModal }) => {
       lastname: lastname.value,
     };
 
-    if (avatar) data.avatar = avatar;
-    if (cover) data.cover = cover;
+    // if (avatar) data.avatar = avatar;
+    // if (cover) data.cover = cover;
 
     const updates = { ...data, channelDescription: channelDesc.value };
 
     dispatch(updateProfile(updates));
 
     dispatch(updateUser(updates));
-    client(`${process.env.REACT_APP_BE}/users`, {
+    client(`${backendUrl}/users`, {
       body: updates,
       method: "PUT",
     });
@@ -169,22 +158,15 @@ const EditProfileModal = ({ closeModal }) => {
               className="pointer"
               width="100%"
               height="200px"
-              src={cover ? cover : profile.cover}
+              src={profile.cover}
               alt="cover"
             />
           </label>
-          <input
-            id="cover-upload"
-            type="file"
-            accept="image/*"
-            onChange={handleCoverUpload}
-            style={{ display: "none" }}
-          />
         </div>
 
         <div className="avatar-upload-icon">
             <img
-              src={avatar ? avatar : profile.avatar}
+              src={profile.avatar}
               className="avatar lg"
               alt="avatar"
             />

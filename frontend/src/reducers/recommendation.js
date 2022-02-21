@@ -4,7 +4,8 @@ import { client } from "../utils";
 export const getRecommendation = createAsyncThunk(
   "recommendation/getRecommendation",
   async () => {
-    const { data } = await client(`${process.env.REACT_APP_BE}/courses`);
+    const backendUrl = process.env.NODE_ENV === "production" ? '' : process.env.REACT_APP_BE;
+    const { data } = await client(`${backendUrl}/courses`);
     return data;
   }
 );

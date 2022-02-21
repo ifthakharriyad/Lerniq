@@ -2,8 +2,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { client } from "../utils";
 
 export const getVideo = createAsyncThunk("video/getVideo", async (videoId) => {
+  const backendUrl = process.env.NODE_ENV === "production" ? '' : process.env.REACT_APP_BE;
   const { data: video } = await client(
-    `${process.env.REACT_APP_BE}/video/${videoId}`
+    `${backendUrl}/video/${videoId}`
   );
   return video;
 });

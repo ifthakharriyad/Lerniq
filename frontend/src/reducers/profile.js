@@ -4,8 +4,9 @@ import { client } from "../utils";
 export const getProfile = createAsyncThunk(
   "profile/getProfile",
   async (userId, thunk) => {
+    const backendUrl = process.env.NODE_ENV === "production" ? '' : process.env.REACT_APP_BE;
     const { data } = await client(
-      `${process.env.REACT_APP_BE}/users/${userId}`
+      `${backendUrl}/users/${userId}`
     );
     return data;
   }
