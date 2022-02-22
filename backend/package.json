@@ -1,13 +1,13 @@
 {
-  "name": "youtubeclone-backend",
+  "name": "energime-training-platform",
   "version": "1.0.0",
-  "description": "Youtube clone backend using Express + Sequelize",
+  "description": "Sustainable Educational Platform by Energime University.",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server",
     "dev": "nodemon src/server"
   },
-  "author": "Manikandan Raji",
+  "author": "Iftekhar Riyad",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.26.0",

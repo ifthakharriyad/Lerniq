@@ -48,9 +48,9 @@ const Login = ({ setAuth }) => {
           onChange={password.onChange}
         />
         <div className="action input-group">
-          <span className="pointer" onClick={() => setAuth("SIGNUP")}>
+          {/* <span className="pointer" onClick={() => setAuth("SIGNUP")}>
             Signup instead
-          </span>
+          </span> */}
           <button>Login</button>
         </div>
       </form>
