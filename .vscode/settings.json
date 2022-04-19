@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/6cd4d185-c946-47b7-b689-8fb3494b29e4/resourceGroups/appsvc_linux_centralus_basic/providers/Microsoft.Web/sites/traingin-platform-app",
+    "appService.deploySubpath": "."
+}

@@ -12,10 +12,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.use("/api/v1/auth", auth);
-app.use("/api/v1/courses", course);
-app.use("/api/v1/users", user);
-app.use('/api/v1/video', video)
+app.use("/auth", auth);
+app.use("/courses", course);
+app.use("/users", user);
+app.use('/video', video)
 
 app.use(errorHandler);
 

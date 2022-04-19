@@ -28,9 +28,9 @@ export const client = async (endpoint, { body, ...customConfig } = {}) => {
   const res = await fetch(endpoint, config);
   const data = await res.json();
 
-  if (res.status !== 200) {
-    return toast(data.message);
-  }
+  // if (res.status !== 200) {
+  //   return toast(data.message);
+  // }
 
   return data;
 };
@@ -103,19 +103,17 @@ export const authenticate = async (type, data) => {
   const backendUrl = process.env.REACT_APP_BE;
 
   try {
-    const { data: token } = await client(`${backendUrl}/auth/${type}`, {
+    const  response  = await client(`${backendUrl}/auth/${type}`, {
       body: data,
     });
-
-    if (token) {
+    if (response.success !== "false") {
+      const {data:token} = response
       const { data: user } = await client(`${backendUrl}/auth/me`, { token });
-
-      localStorage.setItem("user", JSON.stringify({ ...user, token }));
-
       return { ...user, token };
-    }
+    }else return response;
   } catch (err) {
     console.log(err);
+    return err;
   }
 };
 

@@ -1,20 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { StyledAuth } from "./Signup";
 import useInput from "../hooks/useInput";
 import { login } from "../reducers/user";
+import logo from '../assets/logo.png'
+import styled from 'styled-components'
+
+const StyledLogin = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+`
+const CenteredImage = styled.img`
+  display: block;
+  max-width:310px;
+`
 
 const Login = ({ setAuth }) => {
+  const [ loading, setLoading] = useState(false)
   const dispatch = useDispatch();
 
   const email = useInput("");
   const password = useInput("");
 
   const handleLogin = (e) => {
+    setLoading(true);
     e.preventDefault();
 
     if (!email.value.trim() || !password.value.trim()) {
+      setLoading(false);
       return toast.error("Please fill in all the fields");
     }
 
@@ -24,15 +42,22 @@ const Login = ({ setAuth }) => {
     };
 
     const clearForm = () => {
+      setLoading(false)
       email.setValue("");
       password.setValue("");
     };
 
-    dispatch(login({ payload, clearForm }));
+    const showError = (error)=>{
+      setLoading(false)
+      toast.error(error);
+    }
+    dispatch(login({ payload, clearForm, showError }));
   };
 
   return (
-    <StyledAuth>
+    <StyledLogin>
+      <CenteredImage src={logo} alt="site logo"/>
+      <StyledAuth>
       <h2>Login to your account</h2>
       <form onSubmit={handleLogin}>
         <input
@@ -48,13 +73,14 @@ const Login = ({ setAuth }) => {
           onChange={password.onChange}
         />
         <div className="action input-group">
-          {/* <span className="pointer" onClick={() => setAuth("SIGNUP")}>
+          <a href="#" className="pointer" >
             Signup instead
-          </span> */}
-          <button>Login</button>
+          </a>
+          <button>{loading ? "Please wait..." : "Login"}</button>
         </div>
       </form>
     </StyledAuth>
+    </StyledLogin>
   );
 };
 

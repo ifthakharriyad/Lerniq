@@ -17,26 +17,14 @@ try{
         },
       ],
     });
-    const courseVideoIds = await CourseVideo.findAll({
-      attributes:['videoId'],
-      where:{
-        courseId:req.params.id
-      },
-      raw:false
-    })
-
-    const promiseArray = courseVideoIds.map(i => {
-      return Video.findByPk(i.videoId,{
-        attributes:['id', 'title', 'description', 'thumbnail'],
-        include:{
-          model:User
-        }
-      } )
+    const videos = await Video.findAll({
+      where: { userId: "872ebc66-1468-4d33-aa8f-3cf63ebe6220" },
+      order:[['isFree', 'ASC']],
+      attributes: ["id", "thumbnail", "title", "createdAt"],
     });
-    const courseVideos = await Promise.all(promiseArray)
     const c = {
       info:course,
-      videos:courseVideos
+      videos:videos
     }
     if (!course) {
       return next({

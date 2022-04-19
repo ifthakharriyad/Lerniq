@@ -7,11 +7,13 @@ import { signup } from "../reducers/user";
 
 export const StyledAuth = styled.div`
   width: 385px;
-  padding: 3rem 1.5rem;
+  padding: 3rem 1.5rem; 
   background: #d3d3d314;
   border-radius: 4px;
   margin: 8% auto;
-  border:1px solid black;
+  margin-top: 20px;
+  border: 1px solid lightgray;
+  box-shadow: 0px 0px 3px 3px whitesmoke;
   h2 {
     margin-bottom: 1.3rem;
   }

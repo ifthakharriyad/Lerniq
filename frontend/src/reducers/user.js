@@ -3,12 +3,14 @@ import { authenticate } from "../utils";
 
 export const login = createAsyncThunk(
   "user/login",
-  async ({ payload, clearForm }) => {
+  async ({ payload, clearForm, showError }) => {
     const user = await authenticate("login", payload);
-
-    if (user.token) {
+    if (user.success!=="false") {
       clearForm();
+      localStorage.setItem("user", JSON.stringify(user));
       return user;
+    }else{
+      showError(user.message)
     }
   }
 );

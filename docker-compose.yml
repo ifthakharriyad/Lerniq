@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  # db:
+  #   image: mysql:5.7
+  #   volumes:
+  #     - /db_data:/var/lib/mysql
+  #   restart: always
+  #   ports:
+  #     - "3307:3306"
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: password
+  #     MYSQL_DATABASE: training_platform
+  #     MYSQL_USER: iftekhar
+  #     MYSQL_PASSWORD: hello1
+  # # phpmyadmin
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin
+  #   restart: always
+  #   ports:
+  #     - "8080:80"
+  #   environment:
+  #     PMA_HOST: db
+  #     MYSQL_ROOT_PASSWORD: password
+
+  backend:
+    build: ./backend/
+    ports:
+      - "5000:5000"
+
+  frontend:
+    build: ./frontend/
+    ports:
+      - "3000:3000"
+    stdin_open: true
