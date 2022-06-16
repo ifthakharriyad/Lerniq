@@ -8,7 +8,7 @@ import EditProfile from "../components/EditProfile";
 import ChannelTabVideo from "../components/ChannelTabVideo";
 import ChannelTabAbout from "../components/ChannelTabAbout";
 import NoResults from "../components/NoResults";
-import Skeleton from "../skeletons/ChannelSkeleton";
+import Spinner from "../components/Spinner";
 
 import {
   getProfile,
@@ -127,7 +127,7 @@ const Channel = () => {
   }
 
   if (isFetching) {
-    return <Skeleton />;
+    return <Spinner />;
   }
 
   return (

@@ -2,11 +2,12 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled, { css } from "styled-components";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // UI elements
 import Player from "../components/Player";
 import NoResults from "../components/NoResults";
-import Skeleton from "../skeletons/WatchVideoSkeleton";
+import Spinner from "../components/Spinner";
 
 // reducers and others
 import {
@@ -14,6 +15,9 @@ import {
   getVideo,
 } from "../reducers/video";
 import { getRecommendation } from "../reducers/recommendation";
+
+// Icon 
+import { LibIcon } from "../components/Icons";
 
 const Wrapper = styled.div`
   display: grid;
@@ -115,6 +119,7 @@ const Wrapper = styled.div`
 
 const WatchVideo = () => {
   const { videoId } = useParams();
+  const { courses } = useSelector((state) => state.recommendation);
 
   const dispatch = useDispatch();
 
@@ -124,7 +129,10 @@ const WatchVideo = () => {
   const { isFetching: recommendationFetching } = useSelector(
     (state) => state.recommendation
   );
-
+  
+  const enrolledCourse = courses[0]
+  const id = enrolledCourse?.id
+  
   useEffect(() => {
     dispatch(getVideo(videoId));
     dispatch(getRecommendation());
@@ -135,7 +143,7 @@ const WatchVideo = () => {
   }, [dispatch, videoId]);
 
   if (videoFetching || recommendationFetching) {
-    return <Skeleton />;
+    return <Spinner />;
   }
 
   if (!videoFetching && !video) {
@@ -158,8 +166,8 @@ const WatchVideo = () => {
         </div>
 
         <div className="channel-info-description">
-          {/* <div className="channel-info-flex">
-            <div className="channel-info flex-row">
+           <div className="channel-info-flex">
+            {/* <div className="channel-info flex-row">
               <img
                 className="avatar md"
                 src={video.User?.avatar}
@@ -175,18 +183,21 @@ const WatchVideo = () => {
                   {video.subscribersCount} subscribers
                 </span>
               </div>
-            </div>
-            {!video.isVideoMine && !video.isSubscribed && (
+            </div> */}
+            {/* {!video.isVideoMine && !video.isSubscribed && (
               <Button onClick={() => handleSubscribe({ ...video.User })}>
                 Subscribe
               </Button>
-            )}
-            {!video.isVideoMine && video.isSubscribed && (
-              <Button grey onClick={() => handleUnsubscribe(video.User.id)}>
-                Subscribed
-              </Button>
-            )}
-          </div> */}
+            )} */}
+            <Link
+              to={`/course/${id}`}
+            >
+              <div>
+                <LibIcon />
+                <span>Video List</span>
+              </div>
+            </Link>
+          </div> 
 
           <p>{video.info.description}</p>
         </div>

@@ -6,8 +6,10 @@ import VideoCard from "../components/VideoCard";
 import Skeleton from "../skeletons/HomeSkeleton";
 import VideoGrid from "../styles/VideoGrid";
 import { getRecommendation } from "../reducers/recommendation";
+import Spinner from "../components/Spinner";
 
 export const StyledHome = styled.div`
+	position:relative;
 	padding: 1.3rem;
 	width: 90%;
 	margin: 0 auto;
@@ -52,7 +54,7 @@ const Home = () => {
 	}, [dispatch]);
 
 	if (isFetching) {
-		return <Skeleton title={true} />;
+		return <Spinner/>;
 	}
 
 	return (

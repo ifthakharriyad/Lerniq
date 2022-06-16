@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 // components
 import ChannelTabVideo from "../components/ChannelTabVideo";
 import ChannelTabAbout from "../components/ChannelTabAbout";
-import Skeleton from "../skeletons/ChannelSkeleton";
+import Spinner from "../components/Spinner";
 import NoResults from "../components/NoResults";
 
 
@@ -113,7 +113,7 @@ const Channel = () => {
   }
 
   if (isFetching) {
-    return <Skeleton />;
+    return <Spinner />;
   }
   const {info} = course;
   const {videos} = course
