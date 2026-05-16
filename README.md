@@ -1,6 +1,6 @@
 # Lerniq - Video Training Platform
 
-A full-stack MERN application designed to deliver scalable video learning experiences. Built with production-grade architecture focusing on performance, security, and maintainability.
+A full-stack application designed to deliver scalable video learning experiences. Built with production-grade architecture focusing on performance, security, and maintainability.
 
 ---
 
