@@ -22,7 +22,7 @@ exports.getVideo = asyncHandler(async (req, res, next) => {
       statusCode: 404,
     });
   }
- const url = await axios.get(`${process.env.AMPFETCHENDPOINT}?video=${video.id}&token=39B31488-C153-49AB-A1AA-9869535FD2AF`).then((res)=>res.data)
+ const url = await axios.get(`${process.env.AMPFETCHENDPOINT}?video=${video.id}&token={process.env.TOKEN}`).then((res)=>res.data)
   const a={
     info:video,
     url:url
