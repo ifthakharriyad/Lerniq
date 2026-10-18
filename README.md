@@ -171,7 +171,7 @@ Lerniq/
 
 ---
 
-## Future Enhancements
+## V2 Roadmap
 
 - [ ] Moving from a single media delivery service to multiple services
 - [ ] Effortless switching between media services depending on quota or availability for better reliability.
