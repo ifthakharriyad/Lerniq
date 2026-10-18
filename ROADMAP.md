@@ -1,0 +1,12 @@
+# V2 Roadmap
+- [ ] Moving from a single media delivery service to multiple services
+- [ ] Effortless switching between media services depending on quota or availability for better reliability.
+- [ ] Creator dashboard with course and media creation and management.
+- [ ] Mulitple roles for creators.
+- [ ] Real-time notifications with WebSockets
+- [ ] Payment integration.
+- [ ] Discussion forum.
+- [ ] Quiz and final test.
+- [ ] Certification generator.
+- [ ] Live classes.
+- [ ] Mobile app (React Native).
