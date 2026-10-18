@@ -22,11 +22,29 @@ exports.getVideo = asyncHandler(async (req, res, next) => {
       statusCode: 404,
     });
   }
- const url = await axios.get(`${process.env.AMPFETCHENDPOINT}?video=${video.id}&token={process.env.TOKEN}`).then((res)=>res.data)
-  const a={
-    info:video,
-    url:url
+
+  // Build AMP fetch URL from environment variables. Do NOT hardcode tokens in source.
+  if (!process.env.AMPFETCHENDPOINT) {
+    return next({ message: "AMP fetch endpoint not configured", statusCode: 500 });
   }
+
+  let ampUrl = `${process.env.AMPFETCHENDPOINT}?video=${video.id}`;
+  if (process.env.AMPFETCH_TOKEN) ampUrl += `&token=${process.env.AMPFETCH_TOKEN}`;
+
+  // Fetch the AMP URL. If the external request fails, return partial data but log the error.
+  let fetchedData = null;
+  try {
+    const resp = await axios.get(ampUrl);
+    fetchedData = resp.data;
+  } catch (err) {
+    // Avoid leaking sensitive details in the response. Let the error middleware handle it.
+    console.error("AMP fetch failed:", err.message || err);
+  }
+
+  const a = {
+    info: video,
+    url: fetchedData,
+  };
   res.status(200).json({ success: true, data: a });
 });
 
@@ -50,5 +68,5 @@ exports.searchVideo = asyncHandler(async (req, res, next) => {
     },
   });
 
-    return res.status(200).json({ success: true, data: videos });
-  });
+  return res.status(200).json({ success: true, data: videos });
+});
