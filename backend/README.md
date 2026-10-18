@@ -24,17 +24,16 @@ Training platform offering free/paid courses using MERN stack (Mysql, Express, R
 
 ## Running locally
 
-At the root of your project create an .env file with the following contents:
+Create `backend/.env` (DO NOT COMMIT)
 
-```javascript
-JWT_SECRET=<YOUR_SECRET>
-JWT_EXPIRE=30d // or any reasonable value that you prefer
-HOST=<DATABASE_HOST>
-DB_PORT=<DATABASE_PORT>
-DATABASE=<DATABASE_NAME>
-USERNAME=<DATABASE_USERNAME>
-PASSWORD=<DATABASE_PASSWORD>
-```
+Copy `backend/.env.example` → `backend/.env` and fill in real values for:
+- `JWT_SECRET` (e.g. a long random string)
+- `JWT_EXPIRE` (e.g. `30d`)
+- `HOST`, `DB_PORT`, `DATABASE`, `USERNAME`, `PASSWORD` (MySQL connection)
+- `AMPFETCHENDPOINT` and `AMPFETCH_TOKEN` (optional)
+- `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET` (optional)
+
+The backend already loads environment variables. Use CI/host secret stores in production.
 
 Then run <code>yarn install</code> and <code>yarn run dev</code> to start the development server
 
