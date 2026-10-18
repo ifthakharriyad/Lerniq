@@ -77,16 +77,18 @@ cd backend
 yarn install
 ```
 
-Create `.env` file:
-```env
-JWT_SECRET=your_secret_key
-JWT_EXPIRE=30d
-HOST=localhost
-DB_PORT=3306
-DATABASE=lerniq
-USERNAME=root
-PASSWORD=password
-```
+Create `.env` files (DO NOT COMMIT)
+
+Backend:
+- Copy `backend/.env.example` → `backend/.env` and fill in real values.
+- Required variables: `JWT_SECRET`, `JWT_EXPIRE`, `HOST`, `DB_PORT`, `DATABASE`, `USERNAME`, `PASSWORD`
+- Optional: `AMPFETCHENDPOINT`, `AMPFETCH_TOKEN`, `CLOUDINARY_*` (if backend uploads)
+
+Frontend:
+- Copy `frontend/.env.example` → `frontend/.env.local` (or set `REACT_APP_*` envs in your host).
+- Required variables (example): `REACT_APP_BE`, `REACT_APP_CLOUDINARY_ENDPOINT`, `REACT_APP_CLOUDINARY_UPLOAD_PRESET`
+
+For CI / production: store secrets in your platform's secret store (GitHub Actions secrets, Vercel/Netlify/Heroku env) — do NOT commit `.env` files.
 
 Run server:
 ```bash
@@ -97,13 +99,6 @@ yarn run dev
 ```bash
 cd frontend
 yarn install
-```
-
-Create `.env` file:
-```env
-REACT_APP_BE=http://localhost:5000/api/v1
-REACT_APP_CLOUDINARY_ENDPOINT=https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME
-REACT_APP_CLOUDINARY_UPLOAD_PRESET=YOUR_PRESET
 ```
 
 Start application:
@@ -178,11 +173,16 @@ Lerniq/
 
 ## Future Enhancements
 
-- [ ] Video streaming optimization (HLS/DASH)
+- [ ] Moving from a single media delivery service to multiple services
+- [ ] Effortless switching between media services depending on quota or availability for better reliability.
+- [ ] Creator dashboard with course and media creation and management.
+- [ ] Mulitple roles for creators.
 - [ ] Real-time notifications with WebSockets
-- [ ] Payment integration for premium courses
-- [ ] Machine learning-based recommendations
-- [ ] Mobile app (React Native)
+- [ ] Payment integration.
+- [ ] Discussion forum.
+- [ ] Tests.
+- [ ] Live classes.
+- [ ] Mobile app (React Native).
 
 ---
 
